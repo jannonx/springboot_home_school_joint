@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.fusheng.repository.TPerformanceRepository">
+  <resultMap id="BaseResultMap" type="xyz.fusheng.entity.TPerformance">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="courseCode" jdbcType="VARCHAR" property="coursecode" />
+    <result column="score" jdbcType="VARCHAR" property="score" />
+    <result column="teacherCode" jdbcType="VARCHAR" property="teachercode" />
+    <result column="createTime" jdbcType="DATE" property="createtime" />
+    <result column="update" jdbcType="DATE" property="update" />
+    <result column="CourseName" jdbcType="VARCHAR" property="coursename" />
+    <result column="teacherName" jdbcType="VARCHAR" property="teachername" />
+    <result column="periodName" jdbcType="VARCHAR" property="periodname" />
+    <result column="studentCode" jdbcType="VARCHAR" property="studentcode" />
+    <result column="studenName" jdbcType="VARCHAR" property="studenname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, courseCode, score, teacherCode, createTime, `update`, CourseName, teacherName,
+    periodName, studentCode, studenName
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_performance
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_performance
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="xyz.fusheng.entity.TPerformance">
+    insert into t_performance (id, courseCode, score,
+      teacherCode, createTime, `update`,
+      CourseName, teacherName, periodName,
+      studentCode, studenName)
+    values (#{id,jdbcType=INTEGER}, #{coursecode,jdbcType=VARCHAR}, #{score,jdbcType=VARCHAR},
+      #{teachercode,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, #{update,jdbcType=DATE},
+      #{coursename,jdbcType=VARCHAR}, #{teachername,jdbcType=VARCHAR}, #{periodname,jdbcType=VARCHAR},
+      #{studentcode,jdbcType=VARCHAR}, #{studenname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="xyz.fusheng.entity.TPerformance">
+    insert into t_performance
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="coursecode != null">
+        courseCode,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="teachercode != null">
+        teacherCode,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="update != null">
+        `update`,
+      </if>
+      <if test="coursename != null">
+        CourseName,
+      </if>
+      <if test="teachername != null">
+        teacherName,
+      </if>
+      <if test="periodname != null">
+        periodName,
+      </if>
+      <if test="studentcode != null">
+        studentCode,
+      </if>
+      <if test="studenname != null">
+        studenName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="coursecode != null">
+        #{coursecode,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="teachercode != null">
+        #{teachercode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="update != null">
+        #{update,jdbcType=DATE},
+      </if>
+      <if test="coursename != null">
+        #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="teachername != null">
+        #{teachername,jdbcType=VARCHAR},
+      </if>
+      <if test="periodname != null">
+        #{periodname,jdbcType=VARCHAR},
+      </if>
+      <if test="studentcode != null">
+        #{studentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="studenname != null">
+        #{studenname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="xyz.fusheng.entity.TPerformance">
+    update t_performance
+    <set>
+      <if test="coursecode != null">
+        courseCode = #{coursecode,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="teachercode != null">
+        teacherCode = #{teachercode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="update != null">
+        `update` = #{update,jdbcType=DATE},
+      </if>
+      <if test="coursename != null">
+        CourseName = #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="teachername != null">
+        teacherName = #{teachername,jdbcType=VARCHAR},
+      </if>
+      <if test="periodname != null">
+        periodName = #{periodname,jdbcType=VARCHAR},
+      </if>
+      <if test="studentcode != null">
+        studentCode = #{studentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="studenname != null">
+        studenName = #{studenname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xyz.fusheng.entity.TPerformance">
+    update t_performance
+    set courseCode = #{coursecode,jdbcType=VARCHAR},
+      score = #{score,jdbcType=VARCHAR},
+      teacherCode = #{teachercode,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=DATE},
+      `update` = #{update,jdbcType=DATE},
+      CourseName = #{coursename,jdbcType=VARCHAR},
+      teacherName = #{teachername,jdbcType=VARCHAR},
+      periodName = #{periodname,jdbcType=VARCHAR},
+      studentCode = #{studentcode,jdbcType=VARCHAR},
+      studenName = #{studenname,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPerformance" parameterType="string" resultMap="BaseResultMap" >
+select * from  t_performance where  studentCode = #{studentCode}
+  </select>
+</mapper>

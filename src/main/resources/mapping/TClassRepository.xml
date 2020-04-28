@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.fusheng.repository.TClassRepository">
+  <resultMap id="BaseResultMap" type="xyz.fusheng.entity.TClass">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="classCame" jdbcType="VARCHAR" property="classcame" />
+    <result column="classCode" jdbcType="VARCHAR" property="classcode" />
+    <result column="createTime" jdbcType="DATE" property="createtime" />
+    <result column="updateTime" jdbcType="VARCHAR" property="updatetime" />
+  </resultMap>
+  <insert id="insert" parameterType="xyz.fusheng.entity.TClass">
+    insert into t_class (id, classCame, classCode, 
+      createTime, updateTime)
+    values (#{id,jdbcType=INTEGER}, #{classcame,jdbcType=VARCHAR}, #{classcode,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=DATE}, #{updatetime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="xyz.fusheng.entity.TClass">
+    insert into t_class
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="classcame != null">
+        classCame,
+      </if>
+      <if test="classcode != null">
+        classCode,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="classcame != null">
+        #{classcame,jdbcType=VARCHAR},
+      </if>
+      <if test="classcode != null">
+        #{classcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectByAll"  resultMap="BaseResultMap">
+
+select * from t_class where  1=1
+  </select>
+</mapper>

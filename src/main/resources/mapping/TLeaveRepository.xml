@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.fusheng.repository.TLeaveRepository">
+  <resultMap id="BaseResultMap" type="xyz.fusheng.entity.TLeave">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="studentName" jdbcType="VARCHAR" property="studentname" />
+    <result column="studentCode" jdbcType="VARCHAR" property="studentcode" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="startTime" jdbcType="DATE" property="starttime" />
+    <result column="endTime" jdbcType="DATE" property="endtime" />
+    <result column="approverName" jdbcType="VARCHAR" property="approvername" />
+    <result column="approverCode" jdbcType="VARCHAR" property="approvercode" />
+    <result column="opinion" jdbcType="VARCHAR" property="opinion" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="createTime" jdbcType="DATE" property="createtime" />
+    <result column="updateTime" jdbcType="DATE" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, studentName, studentCode, reason, startTime, endTime, approverName, approverCode,
+    opinion, `status`, createTime, updateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_leave
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_leave
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="xyz.fusheng.entity.TLeave">
+    insert into t_leave (id, studentName, studentCode,
+      reason, startTime, endTime,
+      approverName, approverCode, opinion,
+      `status`, createTime, updateTime
+      )
+    values (#{id,jdbcType=INTEGER}, #{studentname,jdbcType=VARCHAR}, #{studentcode,jdbcType=VARCHAR},
+      #{reason,jdbcType=VARCHAR}, #{starttime,jdbcType=DATE}, #{endtime,jdbcType=DATE},
+      #{approvername,jdbcType=VARCHAR}, #{approvercode,jdbcType=VARCHAR}, #{opinion,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER}, #{createtime,jdbcType=DATE}, #{updatetime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="xyz.fusheng.entity.TLeave">
+    insert into t_leave
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="studentname != null">
+        studentName,
+      </if>
+      <if test="studentcode != null">
+        studentCode,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="starttime != null">
+        startTime,
+      </if>
+      <if test="endtime != null">
+        endTime,
+      </if>
+      <if test="approvername != null">
+        approverName,
+      </if>
+      <if test="approvercode != null">
+        approverCode,
+      </if>
+      <if test="opinion != null">
+        opinion,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="studentname != null">
+        #{studentname,jdbcType=VARCHAR},
+      </if>
+      <if test="studentcode != null">
+        #{studentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=DATE},
+      </if>
+      <if test="approvername != null">
+        #{approvername,jdbcType=VARCHAR},
+      </if>
+      <if test="approvercode != null">
+        #{approvercode,jdbcType=VARCHAR},
+      </if>
+      <if test="opinion != null">
+        #{opinion,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="xyz.fusheng.entity.TLeave">
+    update t_leave
+    <set>
+      <if test="studentname != null">
+        studentName = #{studentname,jdbcType=VARCHAR},
+      </if>
+      <if test="studentcode != null">
+        studentCode = #{studentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        startTime = #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null">
+        endTime = #{endtime,jdbcType=DATE},
+      </if>
+      <if test="approvername != null">
+        approverName = #{approvername,jdbcType=VARCHAR},
+      </if>
+      <if test="approvercode != null">
+        approverCode = #{approvercode,jdbcType=VARCHAR},
+      </if>
+      <if test="opinion != null">
+        opinion = #{opinion,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xyz.fusheng.entity.TLeave">
+    update t_leave
+    set studentName = #{studentname,jdbcType=VARCHAR},
+      studentCode = #{studentcode,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      startTime = #{starttime,jdbcType=DATE},
+      endTime = #{endtime,jdbcType=DATE},
+      approverName = #{approvername,jdbcType=VARCHAR},
+      approverCode = #{approvercode,jdbcType=VARCHAR},
+      opinion = #{opinion,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=DATE},
+      updateTime = #{updatetime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectLeave"  parameterType="string" resultMap="BaseResultMap">
+select * from  t_leave where  approverCode = #{teacherCode}  or studentCode =#{studentCode} order by  createTime
+
+  </select>
+</mapper>

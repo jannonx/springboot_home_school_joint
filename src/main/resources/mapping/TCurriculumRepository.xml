@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.fusheng.repository.TCurriculumRepository">
+  <resultMap id="BaseResultMap" type="xyz.fusheng.entity.TCurriculum">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="courseCode" jdbcType="VARCHAR" property="coursecode" />
+    <result column="courseName" jdbcType="VARCHAR" property="coursename" />
+    <result column="courseTimeCode" jdbcType="VARCHAR" property="coursetimecode" />
+    <result column="classCode" jdbcType="VARCHAR" property="classcode" />
+    <result column="week" jdbcType="VARCHAR" property="week" />
+    <result column="createTime" jdbcType="DATE" property="createtime" />
+    <result column="updateTime" jdbcType="DATE" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, courseCode, courseName, courseTimeCode, classCode, week, createTime, updateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_curriculum
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_curriculum
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="xyz.fusheng.entity.TCurriculum">
+    insert into t_curriculum (id, courseCode, courseName,
+      courseTimeCode, classCode, week,
+      createTime, updateTime)
+    values (#{id,jdbcType=INTEGER}, #{coursecode,jdbcType=VARCHAR}, #{coursename,jdbcType=VARCHAR},
+      #{coursetimecode,jdbcType=VARCHAR}, #{classcode,jdbcType=VARCHAR}, #{week,jdbcType=VARCHAR},
+      #{createtime,jdbcType=DATE}, #{updatetime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="xyz.fusheng.entity.TCurriculum">
+    insert into t_curriculum
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="coursecode != null">
+        courseCode,
+      </if>
+      <if test="coursename != null">
+        courseName,
+      </if>
+      <if test="coursetimecode != null">
+        courseTimeCode,
+      </if>
+      <if test="classcode != null">
+        classCode,
+      </if>
+      <if test="week != null">
+        week,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="coursecode != null">
+        #{coursecode,jdbcType=VARCHAR},
+      </if>
+      <if test="coursename != null">
+        #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="coursetimecode != null">
+        #{coursetimecode,jdbcType=VARCHAR},
+      </if>
+      <if test="classcode != null">
+        #{classcode,jdbcType=VARCHAR},
+      </if>
+      <if test="week != null">
+        #{week,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="xyz.fusheng.entity.TCurriculum">
+    update t_curriculum
+    <set>
+      <if test="coursecode != null">
+        courseCode = #{coursecode,jdbcType=VARCHAR},
+      </if>
+      <if test="coursename != null">
+        courseName = #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="coursetimecode != null">
+        courseTimeCode = #{coursetimecode,jdbcType=VARCHAR},
+      </if>
+      <if test="classcode != null">
+        classCode = #{classcode,jdbcType=VARCHAR},
+      </if>
+      <if test="week != null">
+        week = #{week,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xyz.fusheng.entity.TCurriculum">
+    update t_curriculum
+    set courseCode = #{coursecode,jdbcType=VARCHAR},
+      courseName = #{coursename,jdbcType=VARCHAR},
+      courseTimeCode = #{coursetimecode,jdbcType=VARCHAR},
+      classCode = #{classcode,jdbcType=VARCHAR},
+      week = #{week,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=DATE},
+      updateTime = #{updatetime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByCurriculum" resultMap="BaseResultMap" >
+
+select * from  t_curriculum where  classCode = #{classcode} and week=#{day}  order by id
+
+  </select>
+</mapper>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.fusheng.repository.THomeworkRepository">
+  <resultMap id="BaseResultMap" type="xyz.fusheng.entity.THomework">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="teacherName" jdbcType="VARCHAR" property="teachername" />
+    <result column="teacherCode" jdbcType="VARCHAR" property="teachercode" />
+    <result column="instructions" jdbcType="VARCHAR" property="instructions" />
+    <result column="classCode" jdbcType="VARCHAR" property="classcode" />
+    <result column="createTime" jdbcType="DATE" property="createtime" />
+    <result column="updateTime" jdbcType="DATE" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, teacherName, teacherCode, instructions, classCode, createTime, updateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_homework
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_homework
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="xyz.fusheng.entity.THomework">
+    insert into t_homework (id, teacherName, teacherCode,
+      instructions, classCode, createTime,
+      updateTime)
+    values (#{id,jdbcType=INTEGER}, #{teachername,jdbcType=VARCHAR}, #{teachercode,jdbcType=VARCHAR},
+      #{instructions,jdbcType=VARCHAR}, #{classcode,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE},
+      #{updatetime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="xyz.fusheng.entity.THomework">
+    insert into t_homework
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="teachername != null">
+        teacherName,
+      </if>
+      <if test="teachercode != null">
+        teacherCode,
+      </if>
+      <if test="instructions != null">
+        instructions,
+      </if>
+      <if test="classcode != null">
+        classCode,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="teachername != null">
+        #{teachername,jdbcType=VARCHAR},
+      </if>
+      <if test="teachercode != null">
+        #{teachercode,jdbcType=VARCHAR},
+      </if>
+      <if test="instructions != null">
+        #{instructions,jdbcType=VARCHAR},
+      </if>
+      <if test="classcode != null">
+        #{classcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="xyz.fusheng.entity.THomework">
+    update t_homework
+    <set>
+      <if test="teachername != null">
+        teacherName = #{teachername,jdbcType=VARCHAR},
+      </if>
+      <if test="teachercode != null">
+        teacherCode = #{teachercode,jdbcType=VARCHAR},
+      </if>
+      <if test="instructions != null">
+        instructions = #{instructions,jdbcType=VARCHAR},
+      </if>
+      <if test="classcode != null">
+        classCode = #{classcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xyz.fusheng.entity.THomework">
+    update t_homework
+    set teacherName = #{teachername,jdbcType=VARCHAR},
+      teacherCode = #{teachercode,jdbcType=VARCHAR},
+      instructions = #{instructions,jdbcType=VARCHAR},
+      classCode = #{classcode,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=DATE},
+      updateTime = #{updatetime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectHomework"  parameterType="string" resultMap="BaseResultMap">
+select * from  t_homework  where  teachercode =#{teacherCode} or classCode = #{teacherCode} order by  createTime
+  </select>
+</mapper>
